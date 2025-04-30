@@ -26,9 +26,9 @@ export function useSceneModel(envMap: THREE.Texture | null, lightMaps: LightMaps
     globalEnvMapIntensity,
     curtainCarpetLightMapIntensity
   } = useControls('Material调试', {
-    globalLightMapIntensity: { value: 0, min: 0, max: 5, step: 0.1 },
+    globalLightMapIntensity: { value: 0.2, min: 0, max: 5, step: 0.1 },
     globalEnvMapIntensity: { value: 0.2, min: 0, max: 2, step: 0.1 },
-    curtainCarpetLightMapIntensity: { value: 1.5, min: 0, max: 5, step: 0.1 },
+    curtainCarpetLightMapIntensity: { value: 0.0, min: 0, max: 5, step: 0.1 },
   });
 
   // 设置 colorSpace
@@ -38,17 +38,6 @@ export function useSceneModel(envMap: THREE.Texture | null, lightMaps: LightMaps
   if (envMap) {
     envMap.colorSpace = THREE.SRGBColorSpace;
   }
-  const {   CoffeeTableMap,
-    CurtainCarpetsMap,
-    DecorMap,
-    ExteriorMap,
-    FramesMap,
-    FurnitureMap,
-    SofaMap,
-    TableMap,
-    TV_ShelfMap,
-    Empty_ExteriorMap,
-    Empty_FurnitureMap,} = lightMaps;
 
   useEffect(() => {
     scene.traverse((obj) => {

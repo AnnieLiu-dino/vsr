@@ -21,7 +21,6 @@ function getIntersectObj(children: THREE.Object3D[], activeFloor: string): THREE
             result.push(...getIntersectObj(o.children, activeFloor));
         }
     });
-    console.log('findIntersectItems', result);
     return result;
 }
 
@@ -58,21 +57,17 @@ export default function Controls() {
     // 🖱️ 拖动（旋转视角） + 点击（移动到地面）
     useDrag(
         ({ down, delta: [mx, my], tap, first }) => {
-            console.log('tap', tap, 'down', down, 'first', first);
             // tap: true 代表点击事件，down: true 代表按下鼠标拖动， first: true 代表第一次按下鼠标
             if (tap) {
                 raycaster.setFromCamera(mouse, camera);
                 const root = scene.getObjectByName('Scene');
-                console.log('root', root);
                 if (!root) return;
                 // 找到场景中所有 name === activeFloor 的对象（通常是 Mesh，也可能是 Group 等容器）
                 const targets = getIntersectObj(root.children, activeFloor);
                 // 用 Raycaster 发射一条射线，检测与 targets 中的物体有哪些相交
                 const intersects = raycaster.intersectObjects(targets, false);
-                console.log('intersects', intersects);
 
                 for (const intersect of intersects) {
-                    console.log('intersect', intersect);
                     if (intersect.object.name === activeFloor) {
                         setIsMoving(true);
                         const floorCircle = floorCircleRef.current;
@@ -116,7 +111,6 @@ export default function Controls() {
                     document.body.style.cursor = 'grab';
                 }
                 document.body.style.cursor = 'grabbing';
-                console.log('mx', mx, 'my', my);
 
                 yawObject.current.rotation.y += (-mx * dragSpeed) / 1000;
                 pitchObject.current.rotation.x += (-my * dragSpeed) / 1000;
@@ -138,7 +132,6 @@ export default function Controls() {
     // 💡 鼠标移动（预览地面 hover 效果）
     useMove(
         () => {
-            console.log('move', mouse);
             raycaster.setFromCamera(mouse, camera);
             const root = scene.getObjectByName('Scene');
             if (!root) return;

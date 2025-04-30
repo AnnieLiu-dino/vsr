@@ -10,7 +10,7 @@ const Controls = React.lazy(() => import("../components/Controls"));
 const Model = React.lazy(() => import("../components/LivingRoomModel"));
 
 
-const Home = () => {
+const LivingRoom = () => {
     // 相机视野
     const [fov, setFov] = useState(55);
     const { width, ref } = useResizeDetector();
@@ -68,4 +68,4 @@ const Home = () => {
     </div>;
 };
 
-export default Home
+export default LivingRoom
