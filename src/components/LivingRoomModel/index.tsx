@@ -1,11 +1,12 @@
-import { useLightMaps } from './Loaders/useLightMaps';
-import { useEnvironmentMap } from './Loaders/useEnvironmentMap';
-import { useModel } from './Loaders/useModel';
+import { useLightMaps } from './useLightMaps';
+import { useEnvironmentMap } from './useEnvironmentMap';
+import { useModel } from './useModel';
 import { useThree } from '@react-three/fiber';
 import { useEffect } from 'react';
 import * as THREE from 'three';
 
-export default function Model() {
+export default function LivingRoomModel() {
+    console.log('LivingRoomModel');
     // 模型加载的三要素：贴图加载；环境贴图生成；模型加载 + 材质配置
     const lightMaps = useLightMaps();
     const envMap = useEnvironmentMap('/assets/livingroom/envMap.webp');
@@ -22,4 +23,5 @@ export default function Model() {
     }, [scene, modelScene, gl]);
 
     return null;
+
 }

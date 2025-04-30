@@ -1,23 +1,18 @@
 import React, { Suspense, useState, useEffect, useCallback } from "react";
 import { useResizeDetector } from "react-resize-detector";
+import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
 import LoadingManager from '../components/LoadingManager';
 import CustomCamera from "../components/CustomCamera";
 import FloorCircle from "../components/Circle/FloorCircle";
-import Model from '../components/Scene/Model'
-import Controls from "../components/Controls";
-import { Canvas } from "@react-three/fiber";
-import * as THREE from "three";
 
-
-// const Controls = React.lazy(() => import("../components/Controls"));
-// const Model = React.lazy(() => import("../models/Hall"));
-
+const Controls = React.lazy(() => import("../components/Controls"));
+const Model = React.lazy(() => import("../components/LivingRoomModel"));
 
 const Home = () => {
     // 相机视野
     const [fov, setFov] = useState(55);
     const { width, ref } = useResizeDetector();
-
 
     useEffect(() => {
         if (width !== undefined) {

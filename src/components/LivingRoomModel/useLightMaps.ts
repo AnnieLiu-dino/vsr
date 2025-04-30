@@ -1,6 +1,6 @@
 import { useTexture } from '@react-three/drei';
 
-// 负责纹理贴图加载
+// 批量加载 LightMap 光照贴图/灰度图，用于模拟光照强度分布
 export function useLightMaps() {
   // 并行加载多个贴图
   const textures = useTexture({

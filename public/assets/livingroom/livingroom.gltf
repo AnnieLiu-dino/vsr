@@ -2297,112 +2297,112 @@
     {
       "mimeType": "image/jpeg",
       "name": "Marble_Table_Top_1024",
-      "uri": "scene_textures/Marble_Table_Top_1024.jpg"
+      "uri": "texture_mapping/Marble_Table_Top_1024.jpg"
     },
     {
       "mimeType": "image/png",
       "name": "Marble_Table_Top_Spec_copmressed",
-      "uri": "scene_textures/Marble_Table_Top_Spec_copmressed.png"
+      "uri": "texture_mapping/Marble_Table_Top_Spec_copmressed.png"
     },
     {
       "mimeType": "image/jpeg",
       "name": "base_color_texture_compressed",
-      "uri": "scene_textures/base_color_texture_compressed.jpg"
+      "uri": "texture_mapping/base_color_texture_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "basement_color_compressed",
-      "uri": "scene_textures/basement_color_compressed.jpg"
+      "uri": "texture_mapping/basement_color_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Flower_compresed",
-      "uri": "scene_textures/Flower_compresed.jpg"
+      "uri": "texture_mapping/Flower_compresed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Table_wood_compressed",
-      "uri": "scene_textures/Table_wood_compressed.jpg"
+      "uri": "texture_mapping/Table_wood_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "mud_compressed",
-      "uri": "scene_textures/mud_compressed.jpg"
+      "uri": "texture_mapping/mud_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Books_compressed",
-      "uri": "scene_textures/Books_compressed.jpg"
+      "uri": "texture_mapping/Books_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "coffee_base_compressed",
-      "uri": "scene_textures/coffee_base_compressed.jpg"
+      "uri": "texture_mapping/coffee_base_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "carpet_diffuse_compressed",
-      "uri": "scene_textures/carpet_diffuse_compressed.jpg"
+      "uri": "texture_mapping/carpet_diffuse_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Curtain_1_Normal_Map_compressed",
-      "uri": "scene_textures/Curtain_1_Normal_Map_compressed.jpg"
+      "uri": "texture_mapping/Curtain_1_Normal_Map_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Curtain_2_NormalsMap_copmressed",
-      "uri": "scene_textures/Curtain_2_NormalsMap_copmressed.jpg"
+      "uri": "texture_mapping/Curtain_2_NormalsMap_copmressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Chair_Normal_compressed",
-      "uri": "scene_textures/Chair_Normal_compressed.jpg"
+      "uri": "texture_mapping/Chair_Normal_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Fabric004_compressed",
-      "uri": "scene_textures/Fabric004_compressed.jpg"
+      "uri": "texture_mapping/Fabric004_compressed.jpg"
     },
     {
       "mimeType": "image/png",
       "name": "Fabric002_Roughness_compressed",
-      "uri": "scene_textures/Fabric002_Roughness_compressed.png"
+      "uri": "texture_mapping/Fabric002_Roughness_compressed.png"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Fabric004_compressed_Grey",
-      "uri": "scene_textures/Fabric004_compressed_Grey.jpg"
+      "uri": "texture_mapping/Fabric004_compressed_Grey.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Gold Art frame",
-      "uri": "scene_textures/Gold%20Art%20frame.jpg"
+      "uri": "texture_mapping/Gold%20Art%20frame.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Gold Art frame 42",
-      "uri": "scene_textures/Gold%20Art%20frame%2042.jpg"
+      "uri": "texture_mapping/Gold%20Art%20frame%2042.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Fabric",
-      "uri": "scene_textures/Fabric.jpg"
+      "uri": "texture_mapping/Fabric.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Pillow_compressed",
-      "uri": "scene_textures/Pillow_compressed.jpg"
+      "uri": "texture_mapping/Pillow_compressed.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "Marble_White",
-      "uri": "scene_textures/Marble_White.jpg"
+      "uri": "texture_mapping/Marble_White.jpg"
     },
     {
       "mimeType": "image/jpeg",
       "name": "floor8_1920",
-      "uri": "scene_textures/floor8_1920.jpg"
+      "uri": "texture_mapping/floor8_1920.jpg"
     }
   ],
   "accessors": [

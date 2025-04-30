@@ -37,6 +37,17 @@ export function useModel(envMap: THREE.Texture | null, lightMaps: LightMaps) {
   if (envMap) {
     envMap.colorSpace = THREE.SRGBColorSpace;
   }
+  const {   CoffeeTableMap,
+    CurtainCarpetsMap,
+    DecorMap,
+    ExteriorMap,
+    FramesMap,
+    FurnitureMap,
+    SofaMap,
+    TableMap,
+    TV_ShelfMap,
+    Empty_ExteriorMap,
+    Empty_FurnitureMap,} = lightMaps;
 
   useEffect(() => {
     scene.traverse((obj) => {
