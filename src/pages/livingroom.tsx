@@ -1,6 +1,6 @@
-import React, { Suspense, useState, useEffect, useCallback } from "react";
+import React, { Suspense, useState, useEffect, useRef } from "react";
 import { useResizeDetector } from "react-resize-detector";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import LoadingManager from '../components/LoadingManager';
 import CustomCamera from "../components/CustomCamera";
@@ -8,6 +8,7 @@ import FloorCircle from "../components/Circle/FloorCircle";
 
 const Controls = React.lazy(() => import("../components/Controls"));
 const Model = React.lazy(() => import("../components/LivingRoomModel"));
+
 
 const Home = () => {
     // 相机视野
@@ -27,21 +28,24 @@ const Home = () => {
             shadows
             onCreated={({ gl }) => {
                 gl.toneMapping = THREE.ACESFilmicToneMapping;
-                gl.toneMappingExposure = 1.0; // 可调成 1.2 或 1.5 提升对比
+                gl.toneMappingExposure = 1.2; // 可调成 1.2 或 1.5 提升对比
                 gl.outputColorSpace = THREE.SRGBColorSpace; // 取代 outputEncoding
             }}
         >
 
             {/* ✅ 监听 THREE all Loader 的进度 */}
             <LoadingManager />
-            <ambientLight intensity={1} />
+            {/* ✅ 环境光的强度 */}
+            <ambientLight intensity={0.5} />
             <directionalLight
                 position={[5, 10, 5]}
                 intensity={1.5}
                 castShadow
                 shadow-mapSize-width={1024}
                 shadow-mapSize-height={1024}
+                shadow-bias={-0.005}
             />
+
             {/* ✅ 自定义相机 */}
             <CustomCamera fov={fov} position={[1, 1.37, 0]} lookAt={[0, 0, 10]} near={0.1} far={100} />
             <Suspense fallback={"Loading.."}>
