@@ -4,8 +4,8 @@ import { useDrag, useMove } from '@use-gesture/react';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import lerp from 'lerp';
-import { useModel } from '../store/model';
 
+const activeFloor = 'Safe_Area'
 const PI_2 = Math.PI / 2;
 const dragSpeed = 3;
 // 控制圆在地面上浮多少
@@ -33,7 +33,6 @@ export default function Controls() {
     const pitchObject = useRef(new THREE.Object3D());
 
     const [isMoving, setIsMoving] = useState(false);
-    const { state, dispatch } = useModel();
 
     useEffect(() => {
         camera.rotation.order = 'YXZ';
@@ -50,9 +49,6 @@ export default function Controls() {
         camera.rotation.x = lerp(camera.rotation.x, -pitchObject.current.rotation.x, 0.2);
         camera.rotation.y = lerp(camera.rotation.y, -yawObject.current.rotation.y, 0.2);
     });
-
-    const activeFloor = state.activeFloor;
-
 
     // 🖱️ 拖动（旋转视角） + 点击（移动到地面）
     useDrag(
@@ -72,6 +68,7 @@ export default function Controls() {
                         setIsMoving(true);
                         const floorCircle = floorCircleRef.current;
                         if (floorCircle) {
+                            console.log('floorCircle', floorCircle);
                             floorCircle.visible = true;
                             // 将圆的中心 放置在 交点坐标
                             floorCircle.position.copy(intersect.point);

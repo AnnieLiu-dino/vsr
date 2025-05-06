@@ -1,19 +1,22 @@
-import React, { Suspense, useState, useEffect, useRef } from "react";
-import { useResizeDetector } from "react-resize-detector";
-import { Canvas, useThree } from "@react-three/fiber";
+import React, { useState, useRef, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
-import LoadingManager from '../components/LoadingManager';
+import { useResizeDetector } from "react-resize-detector";
 import CustomCamera from "../components/CustomCamera";
-import FloorCircle from "../components/Circle/FloorCircle";
+import SideMenu from "../components/SideMenu";
+import LoadingManager from "../components/LoadingManager";
+import LivingRoomScene from "../components/LivingRoom/LivingRoomScene";
+import LoadingPage from '../components/LoadingPage';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
-const Controls = React.lazy(() => import("../components/Controls"));
-const Model = React.lazy(() => import("../components/LivingRoomModel"));
-
-
-const LivingRoom = () => {
-    // 相机视野
+const LivingRoom: React.FC = () => {
+    const modelRef = useRef<THREE.Group | null>(null);
+    const [open, setOpen] = useState(true);
     const [fov, setFov] = useState(55);
     const { width, ref } = useResizeDetector();
+    const progress = useSelector((state: RootState) => state.loader.progress);
+
 
     useEffect(() => {
         if (width !== undefined) {
@@ -21,51 +24,64 @@ const LivingRoom = () => {
         }
     }, [width]);
 
-    return <div ref={ref} style={{ width: "100vw", height: "100vh" }}>
-        {/* Canvas整个WebGL场景容器，子组件不可随意动GL的全局状态 */}
-        <Canvas
-            dpr={[1, 2]}
-            shadows
-            onCreated={({ gl }) => {
-                gl.toneMapping = THREE.ACESFilmicToneMapping;
-                gl.toneMappingExposure = 1.2; // 可调成 1.2 或 1.5 提升对比
-                gl.outputColorSpace = THREE.SRGBColorSpace; // 取代 outputEncoding
-            }}
-        >
+    useEffect(() => {
+        const video = document.getElementById("video") as HTMLVideoElement;
+        if (video) {
+            video.play();
+            video.muted = true;
+            video.loop = true;
+            video.crossOrigin = "anonymous";
+        }
+    }, []);
 
-            {/* ✅ 监听 THREE all Loader 的进度 */}
-            <LoadingManager />
-            {/* ✅ 环境光的强度 */}
-            <ambientLight intensity={0.5} />
-            <directionalLight
-                position={[5, 10, 5]}
-                intensity={1.5}
-                castShadow
-                shadow-mapSize-width={1024}
-                shadow-mapSize-height={1024}
-                shadow-bias={-0.005}
-            />
 
-            {/* ✅ 自定义相机 */}
-            <CustomCamera fov={fov} position={[1, 1.37, 0]} lookAt={[0, 0, 10]} near={0.1} far={100} />
-            <Suspense fallback={"Loading.."}>
-                <FloorCircle />
-                <Model />
-                <Controls />
-            </Suspense>
-        </Canvas>
-        <video
-            id="video"
-            loop
-            crossOrigin="anonymous"
-            style={{ display: "none" }}
-        >
-            <source
-                src="/assets/livingroom/video/promo_compressed.mp4"
-                type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-            />
-        </video>
-    </div>;
+
+    return (
+        <div ref={ref} style={{ width: "100vw", height: "100vh" }}>
+            <LoadingPage progress={progress} />
+
+            <Canvas
+                dpr={[1, 2]}
+                shadows
+                onCreated={({ gl }) => {
+                    gl.toneMapping = THREE.ACESFilmicToneMapping;
+                    gl.toneMappingExposure = 1.2;
+                    gl.outputColorSpace = THREE.SRGBColorSpace;
+                }}
+            >
+                <LoadingManager />
+                <ambientLight intensity={0.5} />
+                <directionalLight
+                    position={[5, 10, 5]}
+                    intensity={1.5}
+                    castShadow
+                    shadow-mapSize-width={1024}
+                    shadow-mapSize-height={1024}
+                    shadow-bias={-0.005}
+                />
+                <CustomCamera
+                    fov={fov}
+                    position={[1, 1.37, 0]}
+                    lookAt={[0, 0, 10]}
+                    near={0.1}
+                    far={100}
+                />
+                <LivingRoomScene modelRef={modelRef} />
+            </Canvas>
+            <video
+                id="video"
+                loop
+                crossOrigin="anonymous"
+                style={{ display: "none" }}
+            >
+                <source
+                    src="/assets/livingroom/video/promo_compressed.mp4"
+                    type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+                />
+            </video>
+            <SideMenu open={open} setOpen={setOpen} model={modelRef.current} />
+        </div>
+    );
 };
 
-export default LivingRoom
+export default LivingRoom;

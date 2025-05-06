@@ -24,11 +24,15 @@ export function useSceneModel(envMap: THREE.Texture | null, lightMaps: LightMaps
   const {
     globalLightMapIntensity,
     globalEnvMapIntensity,
-    curtainCarpetLightMapIntensity
+    curtainCarpetLightMapIntensity,
+    DecorLightMapIntensity,
+    CoffeeTableEnvMapIntensity,
   } = useControls('Material调试', {
-    globalLightMapIntensity: { value: 0.2, min: 0, max: 5, step: 0.1 },
+    globalLightMapIntensity: { value: 0, min: 0, max: 5, step: 0.1 },
     globalEnvMapIntensity: { value: 0.2, min: 0, max: 2, step: 0.1 },
     curtainCarpetLightMapIntensity: { value: 0.0, min: 0, max: 5, step: 0.1 },
+    DecorLightMapIntensity: { value: 1, min: 0, max: 5, step: 0.1 },
+    CoffeeTableEnvMapIntensity: { value: 1, min: 0, max: 5, step: 0.1 },
   });
 
   // 设置 colorSpace
@@ -45,6 +49,7 @@ export function useSceneModel(envMap: THREE.Texture | null, lightMaps: LightMaps
 
       // mesh = geometry + material
       const mesh = obj as THREE.Mesh;
+      // console.log('material',mesh.material.type);
       const material = mesh.material as THREE.MeshStandardMaterial;
       if (!material) return;
 
@@ -66,21 +71,22 @@ export function useSceneModel(envMap: THREE.Texture | null, lightMaps: LightMaps
 
       if (name.includes('CoffeeTable')) {
         material.lightMap = lightMaps.CoffeeTable;
+
+
         if (matName.includes('CoffeeTable') && envMap) {
           material.envMap = envMap;
-          material.envMapIntensity = globalEnvMapIntensity;
+          material.envMapIntensity = CoffeeTableEnvMapIntensity;
         }
       }
 
       if (name.includes('CurtainCarpet')) {
         material.lightMap = lightMaps.CurtainCarpets;
-        // material.lightMapIntensity = 1.5;
         material.lightMapIntensity = curtainCarpetLightMapIntensity;
       }
 
       if (name.includes('Decor')) {
         material.lightMap = lightMaps.Decor;
-        material.lightMapIntensity = 1;
+        material.lightMapIntensity = DecorLightMapIntensity;
       }
 
       if (name.includes('Exterior')) {
@@ -116,6 +122,7 @@ export function useSceneModel(envMap: THREE.Texture | null, lightMaps: LightMaps
           material.envMap = envMap;
         }
         if (matName.includes('Table_Leg_Copper') && envMap) {
+          console.log('Table_Leg_Copper', material)
           material.envMap = envMap;
           material.envMapIntensity = 0.1;
           material.metalness = 1;
@@ -150,7 +157,6 @@ export function useSceneModel(envMap: THREE.Texture | null, lightMaps: LightMaps
       if (matName.includes('Glass') && envMap) {
         material.envMap = envMap;
         material.envMapIntensity = 1;
-        material.refractionRatio = 0;
       }
 
       if (
