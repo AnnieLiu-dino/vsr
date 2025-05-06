@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useThree } from "@react-three/fiber";
 import { useLightMaps } from "./useLightMaps";
 import { useEnvironmentMap } from "./useEnvironmentMap";

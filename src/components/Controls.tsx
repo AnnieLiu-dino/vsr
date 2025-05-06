@@ -32,7 +32,7 @@ export default function Controls() {
     // 上下旋转 x轴，用于控制相机的俯仰角度
     const pitchObject = useRef(new THREE.Object3D());
 
-    const [isMoving, setIsMoving] = useState(false);
+    const [setIsMoving] = useState(false);
 
     useEffect(() => {
         camera.rotation.order = 'YXZ';
